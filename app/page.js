@@ -134,10 +134,10 @@ const page = () => {
     //console.log(data?.cod, data?.name)
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-100 via-blue-200 to-blue-400 flex flex-col items-center py-8 px-2">
-        <div className="w-full max-w-2xl bg-white/90 rounded-3xl shadow-xl p-6 sm:p-10">
+        <div className="w-full max-w-[1024px] bg-white/90 rounded-3xl shadow-xl p-6 sm:p-10">
           <div className="flex flex-col sm:flex-row sm:justify-between items-center mb-6 gap-4">
-            <h1 className="font-bold text-4xl text-blue-800 tracking-tight font-sans">My Weather</h1>
-            <div className="relative w-full sm:w-80">
+            <h1 className="font-bold text-4xl text-blue-800 tracking-tight font-sans sm:min-w-[300px]">My Weather</h1>
+            <div className="relative  w-full">
               <div className="flex items-center border-2 border-blue-700 rounded-2xl bg-white focus-within:shadow-lg">
                 <input
                   type="text"
@@ -156,7 +156,7 @@ const page = () => {
                   <FaSearch size={20} />
                 </button>
               </div>
-              {recentSearches.length > 0 && search.length > 0 && (
+              {/* {recentSearches.length > 0 && search.length > 0 && (
                 <div className="absolute top-14 left-0 right-0 bg-white border border-blue-200 rounded-b-2xl shadow z-10">
                   {recentSearches.map((item, index) => (
                     <div
@@ -171,7 +171,7 @@ const page = () => {
                     </div>
                   ))}
                 </div>
-              )}
+              )} */}
             </div>
           </div>
 
