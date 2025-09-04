@@ -70,7 +70,6 @@ const page = () => {
         setData5(forecastData);
 
         setPrevCity(city);
-        saveSearch(city);
       } catch (err) {
         setError("Error fetching weather data");
       }
@@ -80,29 +79,12 @@ const page = () => {
     fetchWeatherForCity();
   }, [city]);
 
-  const RECENT_SEARCHES_KEY = 'recentSearches';
-  const MAX_SEARCHES = 5;
-  const [recentSearches, setRecentSearches] = useState([]);
-  useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem(RECENT_SEARCHES_KEY)) || [];
-    setRecentSearches(stored);
-  }, []);
-
-  const saveSearch = (term) => {
-    const filtered = recentSearches.filter(item => item !== term);
-    const updated = [term, ...filtered].slice(0, MAX_SEARCHES);
-    localStorage.setItem(RECENT_SEARCHES_KEY, JSON.stringify(updated));
-    setRecentSearches(updated);
-  };
-
-
   //API key
   const key = process.env.NEXT_PUBLIC_WEATHER_API;
   // const key =process.env.API_SECRET_KEY;
 
   const handleSearch = async () => {
     if (search.trim() === '') {
-      // alert('Please enter a city name');
       return;
     } else {
       if (prevCity == search) {
@@ -129,9 +111,6 @@ const page = () => {
       handleSearch();
     }
   };
-
-  // console.log(search)
-  //console.log(data?.cod, data?.name)
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 via-blue-200 to-blue-400 flex flex-col items-center px-2">
       <div className="w-full max-w-[1024px] bg-blue-200 rounded-3xl shadow-xl p-6 sm:p-10">
@@ -156,22 +135,6 @@ const page = () => {
                 <FaSearch size={20} />
               </button>
             </div>
-            {/* {recentSearches.length > 0 && search.length > 0 && (
-                <div className="absolute top-14 left-0 right-0 bg-white border border-blue-200 rounded-b-2xl shadow z-10">
-                  {recentSearches.map((item, index) => (
-                    <div
-                      className="p-2 px-4 border-b last:border-b-0 cursor-pointer hover:bg-blue-50 text-blue-800 text-base"
-                      key={index}
-                      onClick={() => {
-                        setSearch(item);
-                        setTimeout(() => handleSearch(), 0);
-                      }}
-                    >
-                      {item}
-                    </div>
-                  ))}
-                </div>
-              )} */}
           </div>
         </div>
 
